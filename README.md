@@ -34,20 +34,18 @@ Telegram Send Message (Response)
 
 ## 📁 Project Structure
 ai-study-assistant-n8n/
+ai-study-assistant-n8n/
 │
 ├── workflows/
-
- └── telegram-ai-study-bot.json
-
+│ └── telegram-ai-study-bot.json
 │
 ├── docs/
-
- ├── setup-guide.md
- ├── architecture.png
- └── node-details.md
+│ ├── setup-guide.md
+│ ├── architecture.png
+│ └── node-details.md
 │
- ├── README.md
- └── .gitignore
+├── README.md
+└── .gitignore
 
 ---
 
