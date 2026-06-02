@@ -1,4 +1,3 @@
-
 # 🚀 AI Study Assistant (n8n + Telegram + Gemini + Google Sheets)
 
 ## 📌 Implementation Plan
@@ -25,7 +24,7 @@ Google Sheets (Logging System)
 ↓
 Telegram Send Message (Response)
 
-```
+```id="arch1"
 
 ---
 
@@ -42,58 +41,41 @@ Telegram Send Message (Response)
 ---
 
 ### 2. ✏️ Data Cleaning (Set / Edit Fields Node)
-
-Purpose: Normalize incoming data for processing.
+Purpose: Normalize incoming data for processing
 
 Mapped fields:
 - userMessage → message.text  
 - chatId → message.chat.id  
 - userName → message.from.first_name  
 
-✔ Makes workflow structured and scalable
-
 ---
 
 ### 3. 🧠 AI Processing (Google Gemini AI)
-
-Purpose: Generate intelligent educational responses.
+Purpose: Generate intelligent educational responses
 
 Rules:
-- Explain concepts clearly and simply
-- Use examples when needed
+- Explain clearly and simply
+- Use examples
 - Break down complex topics step-by-step
 - Keep responses structured and easy to understand
-
-Input:
-- userMessage
-
-Output:
-- AI-generated explanation
 
 ---
 
 ### 4. 📊 Google Sheets Logging System
+Purpose: Store all conversations for tracking and analytics
 
-Purpose: Store all conversations for tracking and analytics.
-
-Sheet Columns:
+Columns:
 - Timestamp
 - UserName
 - Message
 - AI Response
 
-Benefits:
-- Chat history tracking
-- Learning analytics
-- Dataset creation for improvements
-
 ---
 
 ### 5. 📤 Telegram Send Message (Output Layer)
+Purpose: Send AI response back to user
 
-Purpose: Send AI response back to user.
-
-Message Format:
+Format:
 ```
 
 🤖 AI Tutor:
@@ -113,7 +95,7 @@ Powered by AI Study Assistant
 
 Telegram Trigger
 ↓
-Set Fields (Normalize Data)
+Set Fields
 ↓
 AI Agent (Gemini)
 ↓
@@ -121,7 +103,7 @@ Google Sheets Log
 ↓
 Telegram Send Message (Reply)
 
-```
+```id="flow2"
 
 ---
 
@@ -141,7 +123,7 @@ Your job:
 User question:
 {{userMessage}}
 
-```
+```id="prompt3"
 
 ---
 
@@ -177,6 +159,44 @@ Use Google Sheets data for:
 
 ---
 
+## 🧠 Skills Used in This Project
+
+- ⚙️ **n8n Automation**
+  - Workflow design and orchestration
+  - Multi-step automation pipelines (Trigger → AI → Storage → Response)
+
+- 🤖 **AI Integration**
+  - Google Gemini API integration
+  - Prompt engineering for educational responses
+  - Structuring AI outputs for chatbot use
+
+- 💬 **Telegram Bot Development**
+  - Telegram Bot API setup and configuration
+  - Real-time message handling
+  - Chat-based interaction flow
+
+- 📊 **Data Logging & Storage**
+  - Google Sheets API integration
+  - Structured logging (Timestamp, User, Message, AI Response)
+  - Dataset creation for analytics
+
+- 🧩 **Backend Logic & Data Handling**
+  - JSON transformation and mapping
+  - Data normalization using Set/Edit Fields nodes
+  - Workflow-based backend logic design
+
+- ☁️ **APIs & Cloud Services**
+  - REST API usage (Google Gemini endpoint)
+  - OAuth authentication (Google Sheets)
+  - Third-party service integration
+
+- 🔍 **System Design & Problem Solving**
+  - Designing scalable AI chatbot architecture
+  - Debugging and optimizing n8n workflows
+  - Connecting multiple services into one automated system
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -194,7 +214,7 @@ ai-study-assistant-n8n/
 ├── README.md
 └── .gitignore
 
-```
+```id="proj4"
 
 ---
 
@@ -208,4 +228,3 @@ To build a scalable AI-powered learning assistant that helps students understand
 
 MIT License — free to use and modify.
 ```
-
