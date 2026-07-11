@@ -22,11 +22,10 @@ Designed as part of my **30-Day n8n Automation Portfolio**, this project demonst
 # 🛠 Technologies Used
 
 * n8n
-* Telegram Trigger
-* Set (Edit Fields)
+* Telegram Bot API
 * Google Gemini AI
 * Google Sheets API
-* Telegram Bot API
+* JavaScript
 
 ---
 
@@ -39,16 +38,16 @@ Telegram User
 Telegram Trigger
       │
       ▼
-Set / Edit Fields
+Set (Edit Fields)
       │
       ▼
 AI Agent (Google Gemini)
       │
       ▼
-Google Sheets
+Google Sheets (Append Row)
       │
       ▼
-Telegram Send Message
+Telegram (Send Message)
 ```
 
 ---
@@ -57,9 +56,9 @@ Telegram Send Message
 
 ## 1. Telegram Trigger
 
-Monitors incoming messages from Telegram users.
+Monitors incoming Telegram messages.
 
-**Extracted Data**
+Extracted data:
 
 * User Message
 * Chat ID
@@ -67,11 +66,11 @@ Monitors incoming messages from Telegram users.
 
 ---
 
-## 2. Set / Edit Fields
+## 2. Set (Edit Fields)
 
-Prepares and organizes the incoming data before sending it to the AI.
+Prepares the incoming data before sending it to the AI.
 
-**Mapped Fields**
+Mapped fields:
 
 | Field       | Source                  |
 | ----------- | ----------------------- |
@@ -85,28 +84,25 @@ Prepares and organizes the incoming data before sending it to the AI.
 
 Google Gemini analyzes the user's question and generates an educational response.
 
-### AI Instructions
+Prompt responsibilities:
 
-* Explain concepts clearly.
-* Keep answers simple and concise.
-* Use examples when appropriate.
-* Break complex topics into smaller steps.
-* Respond in a friendly educational tone.
+* Explain concepts clearly
+* Keep responses concise
+* Use examples when appropriate
+* Break complex topics into simple steps
+* Maintain a friendly educational tone
 
-### Prompt
+Example Prompt:
 
 ```text
-You are Elio AI Study Assistant.
+You are an AI Study Assistant.
 
-Your job:
-
-- Explain concepts clearly and simply.
-- Use examples when helpful.
-- Keep answers concise but informative.
-- Break down difficult topics step-by-step.
+Explain concepts clearly and simply.
+Use examples when appropriate.
+Keep answers concise.
+Break difficult topics into smaller steps.
 
 User Question:
-
 {{userMessage}}
 ```
 
@@ -114,16 +110,11 @@ User Question:
 
 ## 4. Google Sheets
 
-Automatically stores every conversation for monitoring and future analysis.
+Automatically stores every conversation for future reference.
 
-### Logged Data
+Columns:
 
-| Column       |
-| ------------ |
-| Timestamp    |
-| User Name    |
-| User Message |
-| AI Response  |
+| Timestamp | User Name | User Message | AI Response |
 
 ---
 
@@ -131,20 +122,19 @@ Automatically stores every conversation for monitoring and future analysis.
 
 Sends the AI-generated response back to the user.
 
-### Example Response
+Example:
 
 ```text
-🤖 AI Tutor
+🤖 AI Study Assistant
 
 CPU stands for Central Processing Unit.
 
 It is considered the "brain" of the computer because it processes instructions and performs calculations.
 
 Example:
-When you open Google Chrome, the CPU executes the instructions needed to launch the application.
+When you open a web browser, the CPU executes the instructions required to launch the application.
 
-—
-Powered by AI Study Assistant
+Powered by Google Gemini.
 ```
 
 ---
@@ -164,14 +154,17 @@ AI-Study-Assistant/
 ├── README.md
 ├── workflow.json
 │
-└── screenshots/
-    ├── workflow.png
-    ├── telegram-trigger.png
-    ├── set-node.png
-    ├── ai-agent.png
-    ├── google-sheets.png
-    ├── telegram-response.png
-    └── workflow-execution.png
+├── screenshots/
+│   ├── workflow.png
+│   ├── telegram-trigger.png
+│   ├── set-node.png
+│   ├── ai-agent.png
+│   ├── google-sheets.png
+│   ├── telegram-response.png
+│   └── workflow-execution.png
+│
+└── assets/
+    └── sample-conversation.txt
 ```
 
 ---
@@ -190,58 +183,47 @@ Include the following screenshots:
 
 ---
 
-# 🎯 Learning Objectives
+# 🎯 Skills Demonstrated
 
-This project demonstrates:
-
-* Telegram Bot Automation
+* AI Workflow Automation
 * AI Chatbot Development
-* Google Gemini AI Integration
-* Prompt Engineering
+* Telegram Bot Development
+* Google Gemini Integration
 * Google Sheets Automation
-* Event-Driven Workflows
-* Data Transformation using n8n
-* AI-Powered Educational Assistance
+* Prompt Engineering
+* Workflow Automation
+* Event-Driven Automation
+* JavaScript Data Processing
+* No-Code / Low-Code Development
 
 ---
 
-# 🚀 Possible Improvements
+# 🚀 Future Improvements
 
-* 🧠 Conversation memory
-* 📚 Multi-subject tutoring
-* 🎯 Quiz generation
-* 📈 Student learning analytics
-* 🌍 Multi-language support
-* 🔊 Voice message support
-* 📎 PDF document analysis
-* 📝 Assignment and homework assistance
-* 🎓 Personalized learning recommendations
+* Add conversation memory
+* Support voice messages
+* Generate quizzes automatically
+* Analyze PDF study materials
+* Support multiple languages
+* Personalized learning recommendations
+* Student progress dashboard
+* Integration with Notion
 
 ---
 
 # 📄 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the MIT License.
 
 ---
 
-# 🙌 Acknowledgements
-
-* n8n
-* Google Gemini AI
-* Telegram Bot API
-* Google Sheets API
- ---
-
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Belio C. Sinangote**
 
-BS Information Technology Student  
+BS Information Technology Student
 Cebu Technological University (CTU)
 
 **GitHub:** https://github.com/belioautomation
 
 This project is part of my **30-Day n8n Automation Portfolio**, showcasing practical workflow automation using **n8n**, AI integrations, APIs, and business process automation.
-
----
