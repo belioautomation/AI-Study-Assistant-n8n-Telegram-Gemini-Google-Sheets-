@@ -1,0 +1,314 @@
+{
+  "name": "AI Study Assistant (Personal Telegram Bot)",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "03e9c4c6-9dcf-48b7-ba0a-caea7fe8f793",
+      "name": "Telegram Trigger",
+      "webhookId": "230634fd-dc96-47bb-91cc-0ddca25aed85",
+      "credentials": {
+        "telegramApi": {
+          "id": "1f5nU7zBTV9pJU2w",
+          "name": "Study Assistant Elio"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "84f1f5c5-9ea2-4b51-9988-68728771089c",
+              "name": "question",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "27a6e5cf-ecc3-4e92-be55-e4472ab01c9b",
+              "name": "username",
+              "value": "={{$json.message.from.username}}",
+              "type": "string"
+            },
+            {
+              "id": "71f6b8d1-7ccb-4758-8fa8-8f88dd1b9198",
+              "name": "userid",
+              "value": "={{$json.message.from.id}}",
+              "type": "string"
+            },
+            {
+              "id": "f57179ba-b89b-4197-aacd-5cbbadcdbb98",
+              "name": "chatid",
+              "value": "={{$json.message.chat.id}}",
+              "type": "string"
+            },
+            {
+              "id": "daf347af-7ffe-4700-8fb9-56eb0a80590e",
+              "name": "firstname",
+              "value": "={{$json.message.from.first_name}}",
+              "type": "string"
+            },
+            {
+              "id": "f184f08f-77b5-4c90-926c-3b26b91f5d26",
+              "name": "timestamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0cad827e-1c25-4275-8c71-864952592b64",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{$json.question}}",
+        "options": {
+          "systemMessage": "You are Elio AI Study Assistant.\n\nYour job is to help students learn and understand concepts.\n\nRules:\n- Give clear and accurate answers.\n- Use simple language first.\n- Provide examples when helpful.\n- For math and science, explain the steps.\n- If the question is unclear, ask for clarification.\n- Keep answers educational and concise.\n- Format answers neatly using emojis and headings.\n\nResponse Format:\n\n📚 Explanation:\n[Answer]\n\n💡 Example:\n[Example if applicable]\n\n❓ Quick Quiz:\n[One short review question]"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "666a6297-05d8-4efc-9c5a-a043f6307394",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        112
+      ],
+      "id": "8264fa15-4e38-40a6-bd6a-498edfd58a6a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "2QKPjK0KJmUPlB45",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1d4ToineRvvw2sVgKBS9b2vfGPj5lsrJBgdENu4Hv6Jk",
+          "mode": "list",
+          "cachedResultName": "Study Assistant Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1d4ToineRvvw2sVgKBS9b2vfGPj5lsrJBgdENu4Hv6Jk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "QA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1d4ToineRvvw2sVgKBS9b2vfGPj5lsrJBgdENu4Hv6Jk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $('Edit Fields').item.json.timestamp }}",
+            "UserID": "={{ $('Edit Fields').item.json.userid }}",
+            "Username": "={{ $('Edit Fields').item.json.username }}",
+            "FirstName": "={{ $('Edit Fields').item.json.firstname }}",
+            "Question": "={{ $('Edit Fields').item.json.question }}",
+            "Answer": "={{ $json.output }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "UserID",
+              "displayName": "UserID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Username",
+              "displayName": "Username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "FirstName",
+              "displayName": "FirstName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Question",
+              "displayName": "Question",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Answer",
+              "displayName": "Answer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        768,
+        0
+      ],
+      "id": "767c10ce-9845-4e7d-9b24-ebd686d77e3f",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YUIRJvAd668j5542",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5518864435",
+        "text": "=Hi {{ $json.FirstName }}! 👋\n\n❓ Question:\n{{ $('Edit Fields').item.json.question }}\n\n📚 Answer: \n\n{{ $json.Answer }}\n\n━━━━━━━━━━\n🤖 AI Study Assistant",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        0
+      ],
+      "id": "f978fc5f-2d83-4838-8751-870d895e2432",
+      "name": "Send a text message",
+      "webhookId": "31e36204-05bd-4a2e-b9a9-3f00fd8e135b",
+      "credentials": {
+        "telegramApi": {
+          "id": "1f5nU7zBTV9pJU2w",
+          "name": "Study Assistant Elio"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "a21d5bd3-d97c-4510-83ae-67e2605a2a92",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ed8662410e2c82a824ebfbf3145e6c3873a4c21f74c3883ea96b4264bec8e354"
+  },
+  "id": "KhrKndG9xHB1js9Y",
+  "tags": []
+}
