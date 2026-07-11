@@ -164,17 +164,14 @@ AI-Study-Assistant/
 ├── README.md
 ├── workflow.json
 │
-├── screenshots/
-│   ├── workflow.png
-│   ├── telegram-trigger.png
-│   ├── set-node.png
-│   ├── ai-agent.png
-│   ├── google-sheets.png
-│   ├── telegram-response.png
-│   └── workflow-execution.png
-│
-└── assets/
-    └── sample-response.json
+└── screenshots/
+    ├── workflow.png
+    ├── telegram-trigger.png
+    ├── set-node.png
+    ├── ai-agent.png
+    ├── google-sheets.png
+    ├── telegram-response.png
+    └── workflow-execution.png
 ```
 
 ---
