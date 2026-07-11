@@ -231,3 +231,17 @@ This project is licensed under the **MIT License**.
 * Google Gemini AI
 * Telegram Bot API
 * Google Sheets API
+ ---
+
+## 👨‍💻 Author
+
+**Belio C. Sinangote**
+
+BS Information Technology Student  
+Cebu Technological University (CTU)
+
+**GitHub:** https://github.com/belioautomation
+
+This project is part of my **30-Day n8n Automation Portfolio**, showcasing practical workflow automation using **n8n**, AI integrations, APIs, and business process automation.
+
+---
